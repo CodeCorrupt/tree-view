@@ -9,8 +9,8 @@ class FileView extends HTMLElement
 
     @draggable = true
     @isTargetFile = false
-    console.log(@targetList);
-    console.log(@file);
+    # console.log(@targetList);
+    # console.log(@file);
 
     # style the component here
     # if the file exist in the list of .ts generated files,
@@ -19,7 +19,7 @@ class FileView extends HTMLElement
     @fileExt = @getFileExt(@file)
     @fileNameWithoutExt = @getFileNameWithoutExt(@file)
 
-    console.log(@fileNameWithoutExt);
+    # console.log(@fileNameWithoutExt);
 
     for files in @targetList
         if @fileNameWithoutExt == files

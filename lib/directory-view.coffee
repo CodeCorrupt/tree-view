@@ -70,27 +70,18 @@ class DirectoryView extends HTMLElement
       # if so, get name and check for name.js and name.js.map
       # hide these with css hidden.
 
+      viewObj = new FileView()
+
       @listOfTsFiles = []
 
       for entry in addedEntries
-        @tmpName = entry.name.split('.')
-        @fileExt = @tmpName[@tmpName.length - 1]
 
-        if @fileExt == 'ts'
-          @tmpNameTwo = ''
+        @fileExt = viewObj.getFileExt(entry)
 
-          # if file ext is .ts get the name of the file
-          # add the name of the file to the list of ts files
-          for tmp in @tmpName
-            if tmp != 'ts'
-              console.log(tmp);
-              @tmpNameTwo = @tmpNameTwo + tmp + "."
-
-          # strip out the last .
-          @tmpNameTwo = @tmpNameTwo.slice(0, -1)
-
+        if viewObj.isTargetFileExt(@fileExt)
+          @fileNameWithoutExt = viewObj.getFileNameWithoutExt(entry)
           #add into the list
-          @listOfTsFiles.push(@tmpNameTwo)
+          @listOfTsFiles.push(@fileNameWithoutExt)
 
       for entry in addedEntries
 

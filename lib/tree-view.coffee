@@ -88,6 +88,7 @@ class TreeView extends View
   handleEvents: ->
     @on 'dblclick', '.tree-view-resize-handle', =>
       @resizeToFitContent()
+      
     @on 'click', '.entry', (e) =>
       # This prevents accidental collapsing when a .entries element is the event target
       return if e.target.classList.contains('entries')
