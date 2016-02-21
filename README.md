@@ -22,7 +22,7 @@ I was able to achieve this:
 ### Install
 
 Clone the repo
-`git clone git@github.com:your-username/tree-view.git`
+`git clone https://github.com/jaspersorrio/tree-view.git`
 
 Go into the directory
 `cd tree-view`
@@ -31,8 +31,6 @@ Install dependencies
 `apm install`
 
 Go to workingDirectory
-`atom . --dev`
-
-OR
+`atom . --dev` OR
 
 ![Dev Mode](./images/dev mode.png?raw=true "Title")
