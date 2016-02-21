@@ -30,7 +30,7 @@ Go into the directory
 Install dependencies
 `apm install`
 
-Go to workingDirectory
+Go to Your/Working/Directory
 `atom . --dev` OR
 
 ![Dev Mode](./images/dev mode.png?raw=true "Title")
