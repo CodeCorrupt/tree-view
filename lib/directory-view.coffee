@@ -66,8 +66,35 @@ class DirectoryView extends HTMLElement
 
       numberOfEntries = @entries.children.length
 
+      # before adding entries, check if any entries with .ts extension
+      # if so, get name and check for name.js and name.js.map
+      # hide these with css hidden.
+
+      @listOfTsFiles = []
+
       for entry in addedEntries
-        view = @createViewForEntry(entry)
+        @tmpName = entry.name.split('.')
+        @fileExt = @tmpName[@tmpName.length - 1]
+
+        if @fileExt == 'ts'
+          @tmpNameTwo = ''
+
+          # if file ext is .ts get the name of the file
+          # add the name of the file to the list of ts files
+          for tmp in @tmpName
+            if tmp != 'ts'
+              console.log(tmp);
+              @tmpNameTwo = @tmpNameTwo + tmp + "."
+
+          # strip out the last .
+          @tmpNameTwo = @tmpNameTwo.slice(0, -1)
+
+          #add into the list
+          @listOfTsFiles.push(@tmpNameTwo)
+
+      for entry in addedEntries
+
+        view = @createViewForEntry(entry, @listOfTsFiles)
 
         insertionIndex = entry.indexInParentDirectory
         if insertionIndex < numberOfEntries
@@ -83,12 +110,13 @@ class DirectoryView extends HTMLElement
   isPathEqual: (pathToCompare) ->
     @directory.isPathEqual(pathToCompare)
 
-  createViewForEntry: (entry) ->
+  createViewForEntry: (entry, tsList) ->
     if entry instanceof Directory
       view = new DirectoryElement()
     else
       view = new FileView()
-    view.initialize(entry)
+
+    view.initialize(entry, tsList)
 
     subscription = @directory.onDidRemoveEntries (removedEntries) ->
       for removedName, removedEntry of removedEntries when entry is removedEntry
