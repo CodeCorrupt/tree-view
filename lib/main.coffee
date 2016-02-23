@@ -18,11 +18,12 @@ module.exports =
       'tree-view:toggle-focus': => @createView().toggleFocus()
       'tree-view:reveal-active-file': => @createView().revealActiveFile()
       'tree-view:toggle-side': => @createView().toggleSide()
-      'tree-view:add-file': => @createView().add(true) console.log('Test!')
+      'tree-view:add-file': => @createView().add(true)
       'tree-view:add-folder': => @createView().add(false)
       'tree-view:duplicate': => @createView().copySelectedEntry()
       'tree-view:remove': => @createView().removeSelectedEntries()
       'tree-view:rename': => @createView().moveSelectedEntry()
+      'core:save': => @createView().save()
     })
 
   deactivate: ->

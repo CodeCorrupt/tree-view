@@ -88,12 +88,13 @@ class TreeView extends View
   handleEvents: ->
     @on 'dblclick', '.tree-view-resize-handle', =>
       @resizeToFitContent()
-      
+
     @on 'click', '.entry', (e) =>
+      console.log('clicked');
       # This prevents accidental collapsing when a .entries element is the event target
       return if e.target.classList.contains('entries')
-
       @entryClicked(e) unless e.shiftKey or e.metaKey or e.ctrlKey
+
     @on 'mousedown', '.entry', (e) =>
       @onMouseDown(e)
     @on 'mousedown', '.tree-view-resize-handle', (e) => @resizeStarted(e)
@@ -636,6 +637,10 @@ class TreeView extends View
       false
     dialog.attach()
 
+  save: ()->
+    # render tree again
+    @updateRoots()
+    
   removeProjectFolder: (e) ->
     pathToRemove = $(e.target).closest(".project-root > .header").find(".name").data("path")
 
